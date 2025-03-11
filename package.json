@@ -1,6 +1,6 @@
 {
   "name": "@bytecrate/react-lint-config",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Industry standard linting and formatting rules for React TypeScript projects",
   "main": "index.js",
   "types": "index.d.ts",
@@ -22,16 +22,17 @@
   "author": "Dhairya",
   "license": "MIT",
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0 || ^7.0.0 || ^9.0.0",
+    "@typescript-eslint/parser": "^6.0.0 || ^7.0.0 || ^9.0.0",
+    "eslint": "^8.0.0 || ^9.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.0.0",
     "eslint-plugin-jsx-a11y": "^6.0.0",
     "eslint-plugin-react": "^7.0.0",
     "eslint-plugin-react-hooks": "^4.0.0",
     "prettier": "^3.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "globals": "^13.0.0"
   },
   "dependencies": {
     "deepmerge": "^4.3.1"

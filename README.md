@@ -5,6 +5,7 @@ A comprehensive, industry-standard linting and formatting configuration package 
 ## Features
 
 - ✅ Ready-to-use ESLint configurations for React and TypeScript
+- ✅ Support for ESLint v9's new flat config system
 - ✅ Basic and strict rule sets to fit different project needs
 - ✅ Prettier configuration for consistent formatting
 - ✅ Accessibility rules included via jsx-a11y
@@ -15,13 +16,37 @@ A comprehensive, industry-standard linting and formatting configuration package 
 
 ```bash
 # npm
-npm install --save-dev react-ts-lint-config eslint prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks
+npm install --save-dev react-ts-lint-config eslint prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks globals
 
 # yarn
-yarn add --dev react-ts-lint-config eslint prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks
+yarn add --dev react-ts-lint-config eslint prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks globals
 ```
 
 ## Usage
+
+### Recommended
+
+### ESLint v9 Configuration
+
+Create an `eslint.config.js` file in your project root:
+
+#### Basic Configuration
+
+```javascript
+import reactTsLintConfig from "react-ts-lint-config";
+
+export default reactTsLintConfig.eslint.basic;
+```
+
+#### Strict Configuration
+
+```javascript
+import reactTsLintConfig from "react-ts-lint-config";
+
+export default reactTsLintConfig.eslint.strict;
+```
+
+### Legacy
 
 ### ESLint Configuration
 
@@ -91,16 +116,42 @@ The strict configuration builds on the basic set but adds:
 
 You can extend or override any of the provided rules in your project's ESLint configuration:
 
-```javascript
-const { eslint } = require("react-ts-lint-config");
+### Recommended
 
-module.exports = {
-  ...eslint.basic, // or eslint.strict
+```javascript
+import reactTsLintConfig from "react-ts-lint-config";
+
+// Create a copy of the basic config
+const config = [...reactTsLintConfig.eslint.basic];
+
+// Add your own configuration
+config.push({
   rules: {
-    // Override or add your own rules here
+    // Your custom rules here
     "no-console": "off",
   },
-};
+});
+
+export default config;
+```
+
+### Legacy
+
+```javascript
+import reactTsLintConfig from "react-ts-lint-config";
+
+// Create a copy of the basic config
+const config = [...reactTsLintConfig.eslint.basic];
+
+// Add your own configuration
+config.push({
+  rules: {
+    // Your custom rules here
+    "no-console": "off",
+  },
+});
+
+export default config;
 ```
 
 ## License
