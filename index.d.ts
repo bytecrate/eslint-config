@@ -1,12 +1,13 @@
-declare module "react-ts-lint-config" {
+declare module "@bytecrate/eslint-config" {
   export interface ESLintConfig {
-    extends: string[];
-    parser: string;
-    parserOptions: Record<string, any>;
-    plugins: string[];
-    rules: Record<string, any>;
-    settings: Record<string, any>;
-    env: Record<string, boolean>;
+    extends?: string[];
+    parser?: string;
+    parserOptions?: Record<string, any>;
+    plugins?: Record<string, any>;
+    rules?: Record<string, any>;
+    settings?: Record<string, any>;
+    env?: Record<string, boolean>;
+    languageOptions?: Record<string, any>;
   }
 
   export interface PrettierConfig {
@@ -25,8 +26,9 @@ declare module "react-ts-lint-config" {
   }
 
   export const eslint: {
-    basic: ESLintConfig;
-    strict: ESLintConfig;
+    general: ESLintConfig[];
+    typescript: ESLintConfig;
+    react: ESLintConfig;
   };
 
   export const prettier: PrettierConfig;
