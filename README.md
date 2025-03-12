@@ -1,12 +1,11 @@
 # React TypeScript Lint Config
 
-A comprehensive, industry-standard linting and formatting configuration package for React TypeScript projects.
+A comprehensive, industry-standard linting and formatting configuration package for JavaScript, TypeScript and React projects.
 
 ## Features
 
 - ✅ Ready-to-use ESLint configurations for React and TypeScript
 - ✅ Support for ESLint v9's new flat config system
-- ✅ Basic and strict rule sets to fit different project needs
 - ✅ Prettier configuration for consistent formatting
 - ✅ Accessibility rules included via jsx-a11y
 - ✅ Import sorting and organization
@@ -16,56 +15,50 @@ A comprehensive, industry-standard linting and formatting configuration package 
 
 ```bash
 # npm
-npm install --save-dev react-ts-lint-config eslint prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks globals
+npm install --save-dev @bytecrate/eslint-config
 
 # yarn
-yarn add --dev react-ts-lint-config eslint prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks globals
+yarn add --dev @bytecrate/eslint-config
+```
+
+### Installing Peer dependecies
+
+```bash
+# npm
+npm install --save-dev eslint prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks globals
+
+# yarn
+yarn add --dev eslint prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks globals
 ```
 
 ## Usage
 
-### Recommended
-
-### ESLint v9 Configuration
-
-Create an `eslint.config.js` file in your project root:
-
-#### Basic Configuration
-
-```javascript
-import reactTsLintConfig from "react-ts-lint-config";
-
-export default reactTsLintConfig.eslint.basic;
-```
-
-#### Strict Configuration
-
-```javascript
-import reactTsLintConfig from "react-ts-lint-config";
-
-export default reactTsLintConfig.eslint.strict;
-```
-
-### Legacy
-
 ### ESLint Configuration
 
-Create an `.eslintrc.js` file in your project root:
+Create an `eslint.config.js` OR `eslint.config.mjs` file in your project root:
 
-#### Basic Configuration
+#### JavaScript Configuration
 
 ```javascript
-module.exports = {
-  extends: require("react-ts-lint-config").eslint.basic,
-};
+import eslintConfig from "@bytecrate/eslint-config";
+
+export default eslintConfig.eslint.general;
 ```
 
-#### Strict Configuration
+#### TypeScript Configuration
 
 ```javascript
-module.exports = {
-  extends: require("react-ts-lint-config").eslint.strict,
-};
+import eslintConfig from "@bytecrate/eslint-config";
+
+export default eslintConfig.eslint.typescript;
+```
+
+#### React Configuration
+
+```javascript
+import eslintConfig from "@bytecrate/eslint-config";
+
+export default eslintConfig.eslint.react;
 ```
 
 ### Prettier Configuration
@@ -73,7 +66,7 @@ module.exports = {
 Create a `prettier.config.js` file in your project root:
 
 ```javascript
-module.exports = require("react-ts-lint-config").prettier;
+module.exports = require("@bytecrate/eslint-config").prettier;
 ```
 
 ### Package.json Scripts
@@ -83,65 +76,45 @@ Add these scripts to your package.json:
 ```json
 {
   "scripts": {
-    "lint": "eslint src --ext .ts,.tsx",
-    "lint:fix": "eslint src --ext .ts,.tsx --fix",
-    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\""
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   }
 }
 ```
 
 ## Rule Sets
 
-### Basic Rules
+### JavaScript Rules
 
-The basic configuration provides a good balance between code quality and flexibility. It includes:
+The JavaScript configuration provides essential rules for JavaScript projects, including:
+
+- General best practices
+- Import organization
+
+### TypeScript Rules
+
+The TypeScript configuration builds on the JavaScript rules and adds:
+
+- TypeScript recommended rules
+- Import organization specific to TypeScript
+
+### React Rules
+
+The React configuration builds on the TypeScript rules and adds:
 
 - Essential React and React Hooks rules
-- TypeScript recommended rules with some relaxed constraints
-- Import organization
 - Accessibility guidelines
-- General best practices
-
-### Strict Rules
-
-The strict configuration builds on the basic set but adds:
-
-- Stricter React patterns enforcement
-- Stronger TypeScript type safety
-- Naming conventions for TypeScript constructs
-- Code complexity limitations
-- More rigid import requirements
 
 ## Customization
 
 You can extend or override any of the provided rules in your project's ESLint configuration:
 
-### Recommended
-
 ```javascript
-import reactTsLintConfig from "react-ts-lint-config";
+import eslintConfig from "@bytecrate/eslint-config";
 
-// Create a copy of the basic config
-const config = [...reactTsLintConfig.eslint.basic];
-
-// Add your own configuration
-config.push({
-  rules: {
-    // Your custom rules here
-    "no-console": "off",
-  },
-});
-
-export default config;
-```
-
-### Legacy
-
-```javascript
-import reactTsLintConfig from "react-ts-lint-config";
-
-// Create a copy of the basic config
-const config = [...reactTsLintConfig.eslint.basic];
+// Create a copy of the general config
+const config = [...eslintConfig.eslint.general];
 
 // Add your own configuration
 config.push({
